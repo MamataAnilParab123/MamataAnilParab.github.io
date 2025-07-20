@@ -1,0 +1,1191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mamata Anil Parab - Data Scientist</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background-attachment: fixed;
+            overflow-x: hidden;
+        }
+
+        /* Animated background particles */
+        .bg-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            animation: float 20s infinite linear;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(100vh) rotate(0deg); }
+            100% { transform: translateY(-100vh) rotate(360deg); }
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            border-radius: 20px;
+            margin-top: 20px;
+            margin-bottom: 20px;
+            overflow: hidden;
+        }
+
+        /* Header Section */
+        .header {
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            color: white;
+            padding: 60px 40px;
+            text-align: center;
+            position: relative;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="20" cy="20" r="0.5" fill="rgba(255,255,255,0.1)"/><circle cx="80" cy="30" r="0.8" fill="rgba(255,255,255,0.1)"/><circle cx="30" cy="80" r="0.6" fill="rgba(255,255,255,0.1)"/><circle cx="70" cy="70" r="0.4" fill="rgba(255,255,255,0.1)"/></svg>') repeat;
+            opacity: 0.3;
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Minimalistic Typewriter Animation */
+        .name {
+            font-size: 3.5em;
+            font-weight: 300;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            position: relative;
+            display: inline-block;
+        }
+
+        .name-text {
+            color: white;
+            display: inline-block;
+            overflow: hidden;
+            white-space: nowrap;
+            width: 0;
+            border-right: 2px solid rgba(255, 255, 255, 0.9);
+            animation: typewriter 3s steps(18) 0.5s forwards, blinkCursor 1s infinite step-end;
+        }
+
+        /* Clean typewriter effect */
+        @keyframes typewriter {
+            0% { 
+                width: 0; 
+            }
+            99% { 
+                width: 100%; 
+                border-right: 2px solid rgba(255, 255, 255, 0.9);
+            }
+            100% { 
+                width: 100%; 
+                border-right: transparent;
+            }
+        }
+
+        /* Subtle cursor blink */
+        @keyframes blinkCursor {
+            0%, 50% { 
+                border-right-color: rgba(255, 255, 255, 0.9); 
+            }
+            51%, 100% { 
+                border-right-color: transparent; 
+            }
+        }
+
+        .title {
+            font-size: 1.5em;
+            font-weight: 300;
+            margin-bottom: 20px;
+            opacity: 0;
+            animation: fadeInUp 0.8s ease-out 3.5s forwards;
+        }
+
+        @keyframes fadeInUp {
+            0% {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            100% {
+                opacity: 0.9;
+                transform: translateY(0);
+            }
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            margin-top: 30px;
+            opacity: 0;
+            animation: fadeInUp 0.8s ease-out 4s forwards;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: rgba(255, 255, 255, 0.9);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            opacity: 0;
+            animation: fadeInUp 0.6s ease-out forwards;
+            animation-delay: calc(4.2s + var(--delay, 0) * 0.15s);
+        }
+
+        .contact-item:hover {
+            color: #3498db;
+            transform: translateY(-2px);
+        }
+
+        /* Navigation */
+        .nav {
+            background: #34495e;
+            padding: 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-list {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+        }
+
+        .nav-item {
+            margin: 0;
+        }
+
+        .nav-link {
+            display: block;
+            padding: 20px 30px;
+            color: white;
+            text-decoration: none;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .nav-link::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #3498db, #e74c3c);
+            transition: left 0.4s ease;
+            z-index: -1;
+        }
+
+        .nav-link:hover {
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(52, 152, 219, 0.3);
+        }
+
+        .nav-link:hover::before {
+            left: 0;
+        }
+
+        /* Main Content */
+        .main-content {
+            padding: 60px 40px;
+        }
+
+        .section {
+            margin-bottom: 80px;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.8s ease forwards;
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .section-title {
+            font-size: 2.5em;
+            font-weight: 300;
+            color: #2c3e50;
+            margin-bottom: 30px;
+            text-align: center;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(135deg, #3498db, #9b59b6);
+            border-radius: 2px;
+        }
+
+        /* Skills Section */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .skill-category {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            border-left: 5px solid #3498db;
+            transition: all 0.4s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .skill-category::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(52, 152, 219, 0.05), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .skill-category:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(52, 152, 219, 0.2);
+            border-left: 8px solid #e74c3c;
+        }
+
+        .skill-category:hover::before {
+            left: 100%;
+        }
+
+        .skill-category:hover h3 {
+            color: #3498db;
+        }
+
+        .skill-category h3 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+            font-size: 1.3em;
+            transition: all 0.3s ease;
+        }
+
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .skill-tag {
+            background: linear-gradient(135deg, #3498db, #2980b9);
+            color: white;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .skill-tag::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .skill-tag:hover {
+            background: linear-gradient(135deg, #e74c3c, #c0392b);
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 5px 15px rgba(231, 76, 60, 0.4);
+        }
+
+        .skill-tag:hover::before {
+            left: 100%;
+        }
+
+        /* Timeline */
+        .timeline {
+            position: relative;
+            margin: 60px 0;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(to bottom, #3498db, #9b59b6);
+            border-radius: 2px;
+        }
+
+        .timeline-item {
+            display: flex;
+            justify-content: flex-end;
+            padding-right: 50%;
+            position: relative;
+            margin: 80px 0;
+            padding-top: 40px;
+        }
+
+        .timeline-item:nth-child(even) {
+            justify-content: flex-start;
+            padding-left: 50%;
+            padding-right: 0;
+            padding-top: 40px;
+        }
+
+        .timeline-content {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            width: 85%;
+            position: relative;
+            transition: all 0.4s ease;
+            cursor: pointer;
+            overflow: hidden;
+        }
+
+        .timeline-content.education {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            border-left: 5px solid #9b59b6;
+        }
+
+        .timeline-content.education:hover {
+            border-left: 8px solid #8e44ad;
+            box-shadow: 0 25px 50px rgba(155, 89, 182, 0.2);
+        }
+
+        .timeline-content.work {
+            background: white;
+        }
+
+        .timeline-content::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(52, 152, 219, 0.1), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .timeline-content:hover {
+            transform: scale(1.03) translateY(-5px);
+            box-shadow: 0 25px 50px rgba(52, 152, 219, 0.2);
+        }
+
+        .timeline-content.work:hover {
+            border-left: 5px solid #3498db;
+        }
+
+        .timeline-content:hover::after {
+            left: 100%;
+        }
+
+        .timeline-content:hover .job-title {
+            color: #3498db;
+        }
+
+        .timeline-content:hover .company {
+            color: #e74c3c;
+        }
+
+        .timeline-content::before {
+            content: '';
+            position: absolute;
+            top: 50px;
+            right: -15px;
+            width: 0;
+            height: 0;
+            border: 15px solid transparent;
+            border-left-color: white;
+        }
+
+        .timeline-item:nth-child(even) .timeline-content::before {
+            left: -15px;
+            right: auto;
+            border-left-color: transparent;
+            border-right-color: white;
+        }
+
+        .timeline-content.education::before {
+            border-left-color: #f8f9fa;
+        }
+
+        .timeline-item:nth-child(even) .timeline-content.education::before {
+            border-left-color: transparent;
+            border-right-color: #f8f9fa;
+        }
+
+        .timeline-date {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #3498db;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 25px;
+            font-weight: bold;
+            white-space: nowrap;
+            top: -25px;
+            font-size: 0.95em;
+            box-shadow: 0 4px 15px rgba(52, 152, 219, 0.3);
+            z-index: 10;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .timeline-date.education {
+            background: linear-gradient(135deg, #9b59b6, #8e44ad);
+        }
+
+        .timeline-date:hover {
+            transform: translateX(-50%) scale(1.1);
+            box-shadow: 0 6px 20px rgba(231, 76, 60, 0.4);
+        }
+
+        .timeline-date.education:hover {
+            background: linear-gradient(135deg, #8e44ad, #7d3c98);
+        }
+
+        .timeline-dot {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 20px;
+            height: 20px;
+            background: #3498db;
+            border: 4px solid white;
+            border-radius: 50%;
+            top: 15px;
+            box-shadow: 0 0 20px rgba(52, 152, 219, 0.5);
+            z-index: 10;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .timeline-dot.education {
+            background: #9b59b6;
+            box-shadow: 0 0 20px rgba(155, 89, 182, 0.5);
+        }
+
+        .timeline-dot:hover {
+            transform: translateX(-50%) scale(1.3);
+            box-shadow: 0 0 30px rgba(231, 76, 60, 0.7);
+            animation: pulse 1s infinite;
+        }
+
+        .timeline-dot.education:hover {
+            background: #8e44ad;
+            box-shadow: 0 0 30px rgba(142, 68, 173, 0.7);
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: translateX(-50%) scale(1.3); }
+            50% { transform: translateX(-50%) scale(1.5); }
+        }
+
+        .timeline-location {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(135deg, #9b59b6, #8e44ad);
+            color: white;
+            padding: 6px 14px;
+            border-radius: 15px;
+            font-size: 0.8em;
+            font-weight: 500;
+            white-space: nowrap;
+            box-shadow: 0 4px 15px rgba(155, 89, 182, 0.3);
+            transition: all 0.3s ease;
+            z-index: 15;
+            top: 15px;
+        }
+
+        .timeline-location:hover {
+            background: linear-gradient(135deg, #e74c3c, #c0392b);
+            transform: translateX(-50%) scale(1.1);
+            box-shadow: 0 6px 20px rgba(231, 76, 60, 0.4);
+        }
+
+        .job-title {
+            color: #2c3e50;
+            font-size: 1.4em;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .company {
+            color: #3498db;
+            font-size: 1.1em;
+            font-weight: 500;
+            margin-bottom: 15px;
+        }
+
+        .achievement {
+            margin: 15px 0;
+            padding-left: 20px;
+            position: relative;
+            color: #555;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .achievement::before {
+            content: '▶';
+            position: absolute;
+            left: 0;
+            color: #3498db;
+            transition: all 0.3s ease;
+        }
+
+        .achievement:hover {
+            color: #2c3e50;
+            transform: translateX(10px);
+            font-weight: 500;
+        }
+
+        .achievement:hover::before {
+            color: #e74c3c;
+            transform: scale(1.2);
+        }
+
+        /* Publications */
+        .publication {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border-left: 4px solid #9b59b6;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.4s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .publication::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(155, 89, 182, 0.1), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .publication:hover {
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 15px 30px rgba(155, 89, 182, 0.2);
+            border-left: 8px solid #9b59b6;
+        }
+
+        .publication:hover::before {
+            left: 100%;
+        }
+
+        .publication:hover .publication-title {
+            color: #9b59b6;
+        }
+
+        .publication-title {
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 5px;
+            transition: all 0.3s ease;
+        }
+
+        .publication-journal {
+            color: #9b59b6;
+            font-style: italic;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .name {
+                font-size: 2.5em;
+            }
+            
+            .contact-info {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .nav-list {
+                flex-direction: column;
+            }
+            
+            .timeline::before {
+                left: 30px;
+            }
+            
+            .timeline-item {
+                padding-left: 70px;
+                padding-right: 0;
+                justify-content: flex-start;
+                padding-top: 50px;
+            }
+            
+            .timeline-item:nth-child(even) {
+                padding-left: 70px;
+                justify-content: flex-start;
+                padding-top: 50px;
+            }
+
+            .timeline-location {
+                left: 30px;
+                transform: none;
+                top: 45px;
+            }
+            
+            .timeline-content::before {
+                left: -15px;
+                border-left-color: transparent;
+                border-right-color: white;
+            }
+            
+            .timeline-item:nth-child(even) .timeline-content::before {
+                left: -15px;
+                border-left-color: transparent;
+                border-right-color: white;
+            }
+
+            .timeline-content.education::before {
+                left: -15px;
+                border-left-color: transparent;
+                border-right-color: #f8f9fa;
+            }
+            
+            .timeline-date {
+                left: 30px;
+                transform: none;
+                top: -15px;
+            }
+            
+            .timeline-dot {
+                left: 30px;
+                transform: translateX(-50%);
+                top: 25px;
+            }
+
+            .name-decoration {
+                display: none;
+            }
+
+            .name-text {
+                font-size: inherit;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Animated Background -->
+    <div class="bg-animation" id="particles"></div>
+
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-content">
+                <div class="name">
+                    <!-- Minimalistic animated name text -->
+                    <div class="name-text" id="animatedName">Mamata Anil Parab</div>
+                </div>
+                <p class="title">🧠 Data Scientist | 🤖 Machine Learning Engineer | 📊 Analytics Expert</p>
+                <div class="contact-info">
+                    <a href="mailto:mamataanilparab2025@gmail.com" class="contact-item" style="--delay: 0">
+                        📧 mamataanilparab2025@gmail.com
+                    </a>
+                    <a href="tel:806-853-1089" class="contact-item" style="--delay: 1">
+                        📱 806-853-1089
+                    </a>
+                    <a href="https://linkedin.com/in/MamatAnilParab" target="_blank" class="contact-item" style="--delay: 2">
+                        💼 LinkedIn
+                    </a>
+                    <a href="https://github.com/MamataAnilParab" target="_blank" class="contact-item" style="--delay: 3">
+                        🔗 GitHub
+                    </a>
+                </div>
+            </div>
+        </header>
+
+        <!-- Navigation -->
+        <nav class="nav">
+            <ul class="nav-list">
+                <li class="nav-item"><a href="#about" class="nav-link">👋 About</a></li>
+                <li class="nav-item"><a href="#skills" class="nav-link">🛠️ Skills</a></li>
+                <li class="nav-item"><a href="#journey" class="nav-link">🚀 Journey</a></li>
+                <li class="nav-item"><a href="#publications" class="nav-link">📚 Publications</a></li>
+                <li class="nav-item"><a href="#connect" class="nav-link">🤝 Connect</a></li>
+            </ul>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- About Section -->
+            <section id="about" class="section">
+                <h2 class="section-title">👋 About Me</h2>
+                <div style="max-width: 900px; margin: 0 auto;">
+                    <div style="text-align: center; font-size: 1.3em; color: #2c3e50; font-weight: 500; margin-bottom: 30px; line-height: 1.8;">
+                        🚀 Transforming Complex Data into Life-Changing Insights
+                    </div>
+                    
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-bottom: 40px;">
+                        <div style="background: white; padding: 25px; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); border-left: 5px solid #3498db;">
+                            <h3 style="color: #3498db; margin-bottom: 15px; font-size: 1.2em;">🎯 My Mission</h3>
+                            <p style="color: #555; line-height: 1.7;">
+                                Passionate about leveraging cutting-edge machine learning and data science to solve real-world problems in healthcare and pharmaceuticals. I believe data has the power to save lives and improve patient outcomes.
+                            </p>
+                        </div>
+                        
+                        <div style="background: white; padding: 25px; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); border-left: 5px solid #9b59b6;">
+                            <h3 style="color: #9b59b6; margin-bottom: 15px; font-size: 1.2em;">🌍 Global Perspective</h3>
+                            <p style="color: #555; line-height: 1.7;">
+                                My international journey from Mumbai and Pune to Texas and Illinois has shaped my diverse perspective on technology, healthcare systems, and data-driven innovation across cultures.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div style="background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%); padding: 30px; border-radius: 20px; margin-bottom: 30px;">
+                        <h3 style="color: #2c3e50; text-align: center; margin-bottom: 20px; font-size: 1.3em;">📈 Impact by the Numbers</h3>
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; text-align: center;">
+                            <div>
+                                <div style="font-size: 2em; font-weight: bold; color: #3498db;">5+</div>
+                                <div style="color: #666;">Years of Experience</div>
+                            </div>
+                            <div>
+                                <div style="font-size: 2em; font-weight: bold; color: #e74c3c;">16M+</div>
+                                <div style="color: #666;">Data Points Processed</div>
+                            </div>
+                            <div>
+                                <div style="font-size: 2em; font-weight: bold; color: #27ae60;">4M+</div>
+                                <div style="color: #666;">Patient Records Analyzed</div>
+                            </div>
+                            <div>
+                                <div style="font-size: 2em; font-weight: bold; color: #9b59b6;">89%</div>
+                                <div style="color: #666;">ML Model Accuracy</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div style="background: white; padding: 30px; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); margin-bottom: 30px;">
+                        <h3 style="color: #2c3e50; margin-bottom: 20px; font-size: 1.3em; text-align: center;">🔬 What Drives Me</h3>
+                        <div style="color: #555; line-height: 1.8; text-align: center; font-size: 1.1em;">
+                            I thrive at the intersection of <strong style="color: #3498db;">healthcare technology</strong> and <strong style="color: #e74c3c;">artificial intelligence</strong>. 
+                            Whether it's developing anomaly detection systems that identify critical issues, automating complex reporting workflows, 
+                            or extracting insights from unstructured clinical data, I'm passionate about creating solutions that make a difference.
+                        </div>
+                    </div>
+
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px;">
+                        <div style="background: white; padding: 20px; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.1); text-align: center;">
+                            <div style="font-size: 2em; margin-bottom: 10px;">🏆</div>
+                            <h4 style="color: #2c3e50; margin-bottom: 10px;">Innovation Leader</h4>
+                            <p style="color: #666; font-size: 0.9em;">Hackathon winner with award-winning ML solutions</p>
+                        </div>
+                        
+                        <div style="background: white; padding: 20px; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.1); text-align: center;">
+                            <div style="font-size: 2em; margin-bottom: 10px;">🧠</div>
+                            <h4 style="color: #2c3e50; margin-bottom: 10px;">Continuous Learner</h4>
+                            <p style="color: #666; font-size: 0.9em;">Always exploring cutting-edge AI and ML technologies</p>
+                        </div>
+                        
+                        <div style="background: white; padding: 20px; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.1); text-align: center;">
+                            <div style="font-size: 2em; margin-bottom: 10px;">🤝</div>
+                            <h4 style="color: #2c3e50; margin-bottom: 10px;">Collaborative Spirit</h4>
+                            <p style="color: #666; font-size: 0.9em;">Expert at cross-functional teamwork and knowledge sharing</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Skills Section -->
+            <section id="skills" class="section">
+                <h2 class="section-title">🛠️ Technical Expertise</h2>
+                <div class="skills-grid">
+                    <div class="skill-category">
+                        <h3>🤖 Machine Learning & AI</h3>
+                        <div class="skill-tags">
+                            <span class="skill-tag">🧠 CNN</span>
+                            <span class="skill-tag">⚡ XGBoost</span>
+                            <span class="skill-tag">🔍 ResNet50</span>
+                            <span class="skill-tag">📈 Linear Regression</span>
+                            <span class="skill-tag">🌳 Random Forest</span>
+                        </div>
+                    </div>
+                    <div class="skill-category">
+                        <h3>💻 Programming Languages</h3>
+                        <div class="skill-tags">
+                            <span class="skill-tag">🌳 Random Forest</span>
+                            <span class="skill-tag">⚖️ SVM</span>
+                            <span class="skill-tag">📊 Logistic Regression</span>
+                        </div>
+                    </div>
+                    <div class="skill-category">
+                        <h3>📊 Data Analytics & Big Data</h3>
+                        <div class="skill-tags">
+                            <span class="skill-tag">⚡ Spark SQL</span>
+                            <span class="skill-tag">⛏️ Data Mining</span>
+                            <span class="skill-tag">📈 Statistical Analysis</span>
+                            <span class="skill-tag">🖼️ Image Processing</span>
+                        </div>
+                    </div>
+                    <div class="skill-category">
+                        <h3>📊 Visualization & Tools</h3>
+                        <div class="skill-tags">
+                            <span class="skill-tag">📊 Spotfire</span>
+                            <span class="skill-tag">📈 Tableau</span>
+                            <span class="skill-tag">📊 Matplotlib</span>
+                            <span class="skill-tag">🔧 Pipeline Pilot</span>
+                            <span class="skill-tag">📁 SharePoint</span>
+                        </div>
+                    </div>
+                    <div class="skill-category">
+                        <h3>☁️ Cloud Platforms</h3>
+                        <div class="skill-tags">
+                            <span class="skill-tag">☁️ Amazon SageMaker</span>
+                            <span class="skill-tag">☁️ Google Cloud</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Journey Timeline -->
+            <section id="journey" class="section">
+                <h2 class="section-title">🚀 Professional Journey</h2>
+                <div class="timeline">
+                    <!-- Current Position -->
+                    <div class="timeline-item">
+                        <div class="timeline-date work">Aug 2022 - Present</div>
+                        <div class="timeline-dot work"></div>
+                        <div class="timeline-location">📍 North Chicago, IL</div>
+                        <div class="timeline-content work">
+                            <h3 class="job-title">🧠 Data Scientist I</h3>
+                            <p class="company">💊 AbbVie</p>
+                            <div class="achievement">🚀 Spearheaded ACES Lite platform development, achieving 40% increase in user engagement and detecting 26 previously unrecognized anomalies</div>
+                            <div class="achievement">🏆 Developed anomaly detection solution using CNN and XGBoost with 89% accuracy (92% for debris detection) during competitive hackathon</div>
+                            <div class="achievement">⚡ Automated monthly reporting workflow, reducing processing time from hours to minutes through Spotfire dashboard implementation</div>
+                            <div class="achievement">🔧 Created Python pipeline for extracting Pharmacokinetic data from unstructured PDFs, replacing manual error-prone processes</div>
+                        </div>
+                    </div>
+
+                    <!-- Master of Science -->
+                    <div class="timeline-item">
+                        <div class="timeline-date education">June 2021 - May 2022</div>
+                        <div class="timeline-dot education"></div>
+                        <div class="timeline-location">📍 Lubbock, TX</div>
+                        <div class="timeline-content education">
+                            <h3 class="job-title">🎓 Master of Science in Data Science</h3>
+                            <p class="company">⭐ GPA: 3.89</p>
+                            <div class="achievement">📚 Advanced coursework in Machine Learning, Deep Learning, and Statistical Modeling</div>
+                            <div class="achievement">🔬 Specialized in healthcare analytics and biomedical data science applications</div>
+                        </div>
+                    </div>
+
+                    <!-- Graduate Assistant -->
+                    <div class="timeline-item">
+                        <div class="timeline-date work">Sep 2021 - Jan 2022</div>
+                        <div class="timeline-dot work"></div>
+                        <div class="timeline-location">📍 Lubbock, TX</div>
+                        <div class="timeline-content work">
+                            <h3 class="job-title">🎓 Graduate Assistant</h3>
+                            <p class="company">🔬 Consortium for Research Methods and Analysis</p>
+                            <div class="achievement">⚡ Implemented Spark SQL for processing 16 million data points, reducing analysis time by 45%</div>
+                            <div class="achievement">📊 Developed interactive dashboards using Tableau and Matplotlib for revenue visualization</div>
+                        </div>
+                    </div>
+
+                    <!-- Clinical Data Analyst -->
+                    <div class="timeline-item">
+                        <div class="timeline-date work">July 2019 - May 2021</div>
+                        <div class="timeline-dot work"></div>
+                        <div class="timeline-location">📍 Mumbai, India</div>
+                        <div class="timeline-content work">
+                            <h3 class="job-title">📊 Clinical Data Analyst</h3>
+                            <p class="company">🏥 Terna Multispecialty Hospital and Research Center</p>
+                            <div class="achievement">🧠 Implemented multivariate analysis on 4 million patient records using machine learning for anesthesia decision support</div>
+                            <div class="achievement">📈 Achieved 3% increase in test accuracy through k-fold cross-validation optimization</div>
+                            <div class="achievement">⚕️ Enhanced patient safety by integrating models into clinical workflow for improved decision-making</div>
+                        </div>
+                    </div>
+
+                    <!-- Master of Technology -->
+                    <div class="timeline-item">
+                        <div class="timeline-date education">Aug 2017 - May 2019</div>
+                        <div class="timeline-dot education"></div>
+                        <div class="timeline-location">📍 Pune, India</div>
+                        <div class="timeline-content education">
+                            <h3 class="job-title">🎓 Master of Technology</h3>
+                            <p class="company">⭐ GPA: 3.9</p>
+                            <div class="achievement">🔬 Focus on Biomedical Engineering and Healthcare Technology</div>
+                            <div class="achievement">💡 Research in medical device automation and patient safety systems</div>
+                        </div>
+                    </div>
+
+                    <!-- Biomedical Analyst -->
+                    <div class="timeline-item">
+                        <div class="timeline-date work">June 2018 - May 2019</div>
+                        <div class="timeline-dot work"></div>
+                        <div class="timeline-location">📍 Pune, India</div>
+                        <div class="timeline-content work">
+                            <h3 class="job-title">⚗️ Biomedical Analyst</h3>
+                            <p class="company">🔬 Four Eyes Research Center</p>
+                            <div class="achievement">🤖 Developed Python automation for temperature control during cancer surgeries, enhancing patient safety</div>
+                            <div class="achievement">🚨 Integrated audio-visual alarm systems, improving response time by 70%</div>
+                            <div class="achievement">💰 Reduced external data storage costs by 8% through Google Cloud optimization</div>
+                        </div>
+                    </div>
+
+                    <!-- Graduate Research Trainee -->
+                    <div class="timeline-item">
+                        <div class="timeline-date work">July 2015 - Jan 2017</div>
+                        <div class="timeline-dot work"></div>
+                        <div class="timeline-location">📍 Mumbai, India</div>
+                        <div class="timeline-content work">
+                            <h3 class="job-title">🔬 Graduate Research Trainee</h3>
+                            <p class="company">🧪 Ninad Research Lab</p>
+                            <div class="achievement">🔍 Conducted research on breast cancer detection, RBC classification, and climate analysis</div>
+                            <div class="achievement">📊 Mastered model evaluation techniques including Confusion Matrix, F1 Score, and Cross-Validation</div>
+                        </div>
+                    </div>
+
+                    <!-- Bachelor of Engineering -->
+                    <div class="timeline-item">
+                        <div class="timeline-date education">Aug 2011 - June 2015</div>
+                        <div class="timeline-dot education"></div>
+                        <div class="timeline-location">📍 Mumbai, India</div>
+                        <div class="timeline-content education">
+                            <h3 class="job-title">🎓 Bachelor of Engineering</h3>
+                            <p class="company">⭐ GPA: 3.48</p>
+                            <div class="achievement">⚙️ Foundation in Engineering principles and problem-solving methodologies</div>
+                            <div class="achievement">💻 Early exposure to programming and analytical thinking</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Publications -->
+            <section id="publications" class="section">
+                <h2 class="section-title">📚 Publications & Research</h2>
+                <div class="publication">
+                    <div class="publication-title">🩸 Red blood cell classification using image processing and CNN</div>
+                    <div class="publication-journal">📄 bioRxiv (2020) - Parab, M.A., Mehendale, N.D.</div>
+                </div>
+                <div class="publication">
+                    <div class="publication-title">👤 Face Recognition-Based Automatic Hospital Admission with SMS Alerts</div>
+                    <div class="publication-journal">📄 SN Computer Science (2021) - Parab, M.A, Mehendale, N.D.</div>
+                </div>
+            </section>
+
+            <!-- Connect Section -->
+            <section id="connect" class="section">
+                <h2 class="section-title">🤝 Let's Connect & Collaborate</h2>
+                <div style="max-width: 1000px; margin: 0 auto;">
+                    <!-- Hero Message -->
+                    <div style="text-align: center; background: linear-gradient(135deg, #3498db, #9b59b6); color: white; padding: 40px; border-radius: 20px; margin-bottom: 40px; box-shadow: 0 15px 35px rgba(0,0,0,0.1);">
+                        <h3 style="font-size: 1.8em; margin-bottom: 15px; font-weight: 300;">🚀 Ready to Transform Data Together?</h3>
+                        <p style="font-size: 1.2em; opacity: 0.95; line-height: 1.6; max-width: 700px; margin: 0 auto;">
+                            Whether you're looking for a data science collaborator, have an exciting project in mind, or want to discuss the latest in ML and AI, I'd love to hear from you! Let's create something amazing together.
+                        </p>
+                    </div>
+
+                    <!-- Contact Cards Grid -->
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; margin-bottom: 40px;">
+                        <!-- Email Card -->
+                        <div style="background: white; padding: 30px; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); border-top: 5px solid #e74c3c; text-align: center; transition: all 0.3s ease; cursor: pointer;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
+                            <div style="font-size: 3em; margin-bottom: 15px;">📧</div>
+                            <h4 style="color: #e74c3c; margin-bottom: 10px; font-size: 1.2em;">Email Me</h4>
+                            <p style="color: #666; margin-bottom: 15px; font-size: 0.9em;">For collaborations, opportunities, or just to say hi!</p>
+                            <a href="mailto:mamataanilparab2025@gmail.com" style="color: #e74c3c; text-decoration: none; font-weight: 500; font-size: 0.9em;">mamataanilparab2025@gmail.com</a>
+                        </div>
+
+                        <!-- LinkedIn Card -->
+                        <div style="background: white; padding: 30px; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); border-top: 5px solid #0077b5; text-align: center; transition: all 0.3s ease; cursor: pointer;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
+                            <div style="font-size: 3em; margin-bottom: 15px;">💼</div>
+                            <h4 style="color: #0077b5; margin-bottom: 10px; font-size: 1.2em;">Professional Network</h4>
+                            <p style="color: #666; margin-bottom: 15px; font-size: 0.9em;">Connect with me for professional opportunities</p>
+                            <a href="https://linkedin.com/in/MamatAnilParab" target="_blank" style="color: #0077b5; text-decoration: none; font-weight: 500; font-size: 0.9em;">LinkedIn Profile</a>
+                        </div>
+
+                        <!-- GitHub Card -->
+                        <div style="background: white; padding: 30px; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); border-top: 5px solid #333; text-align: center; transition: all 0.3s ease; cursor: pointer;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
+                            <div style="font-size: 3em; margin-bottom: 15px;">💻</div>
+                            <h4 style="color: #333; margin-bottom: 10px; font-size: 1.2em;">Code & Projects</h4>
+                            <p style="color: #666; margin-bottom: 15px; font-size: 0.9em;">Explore my open-source contributions and projects</p>
+                            <a href="https://github.com/MamataAnilParab" target="_blank" style="color: #333; text-decoration: none; font-weight: 500; font-size: 0.9em;">GitHub Repository</a>
+                        </div>
+
+                        <!-- Phone Card -->
+                        <div style="background: white; padding: 30px; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); border-top: 5px solid #27ae60; text-align: center; transition: all 0.3s ease; cursor: pointer;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
+                            <div style="font-size: 3em; margin-bottom: 15px;">📱</div>
+                            <h4 style="color: #27ae60; margin-bottom: 10px; font-size: 1.2em;">Direct Call</h4>
+                            <p style="color: #666; margin-bottom: 15px; font-size: 0.9em;">Let's discuss your data science needs directly</p>
+                            <a href="tel:806-853-1089" style="color: #27ae60; text-decoration: none; font-weight: 500; font-size: 0.9em;">806-853-1089</a>
+                        </div>
+                    </div>
+
+                    <!-- What I'm Looking For -->
+                    <div style="background: white; padding: 35px; border-radius: 20px; box-shadow: 0 15px 35px rgba(0,0,0,0.1); margin-bottom: 30px;">
+                        <h3 style="text-align: center; color: #2c3e50; margin-bottom: 30px; font-size: 1.4em;">🎯 What I'm Excited to Discuss</h3>
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 25px;">
+                            <div style="text-align: center; padding: 20px;">
+                                <div style="font-size: 2.5em; margin-bottom: 10px;">🚀</div>
+                                <h4 style="color: #3498db; margin-bottom: 10px;">New Opportunities</h4>
+                                <p style="color: #666; font-size: 0.9em;">Data Science roles in healthcare, pharmaceuticals, or innovative tech companies</p>
+                            </div>
+                            <div style="text-align: center; padding: 20px;">
+                                <div style="font-size: 2.5em; margin-bottom: 10px;">🤝</div>
+                                <h4 style="color: #9b59b6; margin-bottom: 10px;">Collaborations</h4>
+                                <p style="color: #666; font-size: 0.9em;">Research projects, hackathons, or innovative ML/AI applications</p>
+                            </div>
+                            <div style="text-align: center; padding: 20px;">
+                                <div style="font-size: 2.5em; margin-bottom: 10px;">💡</div>
+                                <h4 style="color: #e74c3c; margin-bottom: 10px;">Knowledge Sharing</h4>
+                                <p style="color: #666; font-size: 0.9em;">Speaking engagements, mentoring, or technical discussions</p>
+                            </div>
+                            <div style="text-align: center; padding: 20px;">
+                                <div style="font-size: 2.5em; margin-bottom: 10px;">🔬</div>
+                                <h4 style="color: #27ae60; margin-bottom: 10px;">Research</h4>
+                                <p style="color: #666; font-size: 0.9em;">Academic collaborations, publications, or innovative healthcare solutions</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Call to Action -->
+                    <div style="text-align: center; background: linear-gradient(135deg, #f8f9fa, #e9ecef); padding: 30px; border-radius: 15px; border: 2px dashed #3498db; margin-bottom: 30px;">
+                        <h3 style="color: #2c3e50; margin-bottom: 15px; font-size: 1.3em;">💬 Don't Be a Stranger!</h3>
+                        <p style="color: #666; margin-bottom: 20px; line-height: 1.6; max-width: 600px; margin-left: auto; margin-right: auto;">
+                            I believe the best innovations happen when brilliant minds connect. Whether you have a question about my work, 
+                            want to brainstorm a data science challenge, or just want to chat about the future of AI in healthcare – I'm all ears!
+                        </p>
+                        <div style="display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; margin-top: 25px;">
+                            <a href="mailto:mamataanilparab2025@gmail.com" style="background: #3498db; color: white; padding: 12px 25px; border-radius: 25px; text-decoration: none; font-weight: 500; transition: all 0.3s ease; display: inline-block;" onmouseover="this.style.background='#2980b9'" onmouseout="this.style.background='#3498db'">
+                                📧 Send Email
+                            </a>
+                            <a href="https://linkedin.com/in/MamatAnilParab" target="_blank" style="background: #0077b5; color: white; padding: 12px 25px; border-radius: 25px; text-decoration: none; font-weight: 500; transition: all 0.3s ease; display: inline-block;" onmouseover="this.style.background='#005885'" onmouseout="this.style.background='#0077b5'">
+                                💼 LinkedIn Connect
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Footer Message -->
+                    <div style="text-align: center; margin-top: 20px; padding: 30px 20px; color: #777; font-style: italic; background: rgba(255,255,255,0.5); border-radius: 15px;">
+                        <p style="font-size: 1.1em; margin-bottom: 10px;">"The best way to predict the future is to create it together." 🌟</p>
+                        <p style="margin-top: 10px; font-size: 0.9em; color: #555;">Looking forward to hearing from you!</p>
+                        <div style="margin-top: 20px; padding-top: 20px; border-top: 1px solid #ddd; font-size: 0.8em; color: #888;">
+                            © 2025 Mamata Anil Parab | Built with ❤️ and Data Science
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script>
+        // Create animated particles
+        function createParticles() {
+            const container = document.getElementById('particles');
+            const particleCount = 50;
+            
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 20 + 's';
+                particle.style.animationDuration = (Math.random() * 10 + 10) + 's';
+                container.appendChild(particle);
+            }
+        }
+
+        // Smooth scrolling for navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animationDelay = '0s';
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.section').forEach(section => {
+            observer.observe(section);
+        });
+
+        // Initialize particles
+        createParticles();
+    </script>
+</body>
+</html>
