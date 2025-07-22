@@ -1130,7 +1130,7 @@
                         🔗 GitHub
                     </a>
                     <!-- Download Resume Button - positioned with contact info -->
-                    <a href="#" class="download-resume" onclick="alert('Resume download feature - add your resume PDF link here')">
+                    <a href="#" class="download-resume" onclick="downloadResume()">
                         📄 Download Resume
                     </a>
                 </div>
@@ -1228,7 +1228,6 @@
                             <span class="skill-tag">🐍 Python</span>
                             <span class="skill-tag">📊 R</span>
                             <span class="skill-tag">🗃️ SQL</span>
-                            <span class="skill-tag">☕ Java</span>
                         </div>
                     </div>
                     <div class="skill-category">
@@ -1247,7 +1246,6 @@
                             <span class="skill-tag">📈 Tableau</span>
                             <span class="skill-tag">📊 Matplotlib</span>
                             <span class="skill-tag">🔧 Pipeline Pilot</span>
-                            <span class="skill-tag">📁 SharePoint</span>
                         </div>
                     </div>
                     <div class="skill-category">
@@ -1457,7 +1455,7 @@
                         </p>
                         <div style="display: flex; justify-content: center; gap: 15px; flex-wrap: wrap;">
                             <a href="mailto:mamataanilparab2025@gmail.com" style="background: #e74c3c; color: white; padding: 12px 24px; border-radius: 25px; text-decoration: none; font-weight: 600; transition: all 0.3s ease; display: inline-block;" onmouseover="this.style.background='#c0392b'" onmouseout="this.style.background='#e74c3c'">
-                                📧 mamataanilparab2025@gmail.com
+                                📧 Email
                             </a>
                             <a href="https://www.linkedin.com/in/mamata-parab/" target="_blank" style="background: #0077b5; color: white; padding: 12px 24px; border-radius: 25px; text-decoration: none; font-weight: 600; transition: all 0.3s ease; display: inline-block;" onmouseover="this.style.background='#005885'" onmouseout="this.style.background='#0077b5'">
                                 💼 LinkedIn
@@ -1476,6 +1474,50 @@
     </div>
 
     <script>
+        // Download Resume Function
+        function downloadResume() {
+            // Update this URL to point to your actual resume in your GitHub repository
+            // Format: https://github.com/USERNAME/REPOSITORY-NAME/raw/main/resume.pdf
+            const resumeUrl = 'https://github.com/MamataAnilParab/.github.io/raw/main/Mamata-Resume.pdf';
+            
+            // Get the button that was clicked
+            const button = event.target.closest('a') || event.target;
+            const originalHTML = button.innerHTML;
+            
+            // Show loading state
+            button.innerHTML = '<span class="download-icon">⏳</span><span>Downloading...</span>';
+            button.style.pointerEvents = 'none';
+            
+            // Create a temporary link element
+            const link = document.createElement('a');
+            link.href = resumeUrl;
+            link.download = 'Mamata-Resume.pdf';
+            link.target = '_blank'; // Fallback for some browsers
+            
+            // Add the link to the DOM temporarily
+            document.body.appendChild(link);
+            
+            // Trigger the download
+            link.click();
+            
+            // Clean up
+            document.body.removeChild(link);
+            
+            // Show success feedback
+            setTimeout(() => {
+                button.innerHTML = '<span class="download-icon">✅</span><span>Downloaded!</span>';
+                
+                // Reset button after 2 seconds
+                setTimeout(() => {
+                    button.innerHTML = originalHTML;
+                    button.style.pointerEvents = 'auto';
+                }, 2000);
+            }, 500);
+            
+            // Prevent default link behavior
+            event.preventDefault();
+            return false;
+        }
         // Create floating particles
         function createParticles() {
             const container = document.getElementById('particles');
